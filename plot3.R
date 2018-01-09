@@ -5,13 +5,13 @@ png(filename="plot3.png")
 
 # reading and subsetting the data
 data <- read.csv(file = "household_power_consumption.txt", sep = ";", stringsAsFactors=FALSE)
-filtered <- subset(data, Date %in% c("1/2/2007", "1/1/2007"), select=c(Date, Time, Sub_metering_1, Sub_metering_2, Sub_metering_3))
+filtered <- subset(data, Date %in% c("1/2/2007", "2/2/2007"), select=c(Date, Time, Sub_metering_1, Sub_metering_2, Sub_metering_3))
 
 # reformatting some of the data
 filtered$Sub_metering_1 <- as.numeric(filtered$Sub_metering_1)
 filtered$Sub_metering_2 <- as.numeric(filtered$Sub_metering_2)
 filtered$Sub_metering_3 <- as.numeric(filtered$Sub_metering_3)
-filtered$DayTime <- mdy(filtered$Date) + hms(filtered$Time)
+filtered$DayTime <- dmy(filtered$Date) + hms(filtered$Time)
 
 # actual plotting
 plot(filtered$DayTime, filtered$Sub_metering_1, type="l", ylab = "Energy sub metering", xlab="")

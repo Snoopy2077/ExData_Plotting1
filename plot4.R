@@ -6,13 +6,13 @@ png(filename="plot4.png")
 
 # reading in and subsetting
 data <- read.csv(file = "household_power_consumption.txt", sep = ";", stringsAsFactors=FALSE)
-filtered <- subset(data, Date %in% c("1/2/2007", "1/1/2007"))
+filtered <- subset(data, Date %in% c("1/2/2007", "2/2/2007"))
 
 # reformatting some of the data
 filtered$Global_active_power <- as.numeric(filtered$Global_active_power)
 filtered$Global_reactive_power <- as.numeric(filtered$Global_reactive_power)
 filtered$Voltage <- as.numeric(filtered$Voltage)
-filtered$DayTime <- mdy(filtered$Date) + hms(filtered$Time)
+filtered$DayTime <- dmy(filtered$Date) + hms(filtered$Time)
 filtered$Sub_metering_1 <- as.numeric(filtered$Sub_metering_1)
 filtered$Sub_metering_2 <- as.numeric(filtered$Sub_metering_2)
 filtered$Sub_metering_3 <- as.numeric(filtered$Sub_metering_3)
